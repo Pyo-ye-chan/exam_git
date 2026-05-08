@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styles from "./Login.module.css";
 
 const Login = () => {
@@ -9,18 +10,18 @@ const Login = () => {
                     <h1 className={styles.title}>로그인</h1>
                     <p className={styles.subtitle}>계정 정보를 입력하여 로그인해주세요</p>
                 </div>
-                
-                <form className={styles.form} onSubmit={(e) => e.preventDefault()}>
+
+                <div className={styles.form}>
                     <div className={styles.inputField}>
-                        <label className={styles.label}>아이디</label>
+                        <label className={styles.label}>이메일 주소</label>
                         <input 
-                            type="text" 
+                            type="email" 
                             className={styles.input} 
-                            placeholder="아이디를 입력하세요." 
+                            placeholder="example@email.com" 
                             required 
                         />
                     </div>
-                    
+
                     <div className={styles.inputField}>
                         <label className={styles.label}>비밀번호</label>
                         <input 
@@ -30,21 +31,22 @@ const Login = () => {
                             required 
                         />
                     </div>
-                    
-                    <button type="submit" className={styles.loginButton}>
+
+                    <button type="button" className={styles.loginButton}>
                         로그인
                     </button>
-                </form>
-                
+                </div>
+
                 <div className={styles.actions}>
-                    <a href="#forgot" className={styles.link}>비밀번호를 잊으셨나요?</a>
+                    <Link to="/forgot" className={styles.link}>비밀번호를 잊으셨나요?</Link>
                     <span>
-                        처음이신가요? <a href="#signup" className={styles.link}>회원가입</a>
+                        처음이신가요? <Link to="/signup" className={styles.link}>회원가입</Link>
                     </span>
                 </div>
             </div>
         </div>
     );
 };
+
 
 export default Login;

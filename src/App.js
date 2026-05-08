@@ -1,6 +1,6 @@
 import React from 'react';
 
-import List from './domains/Board/List';
+import List from './domains/board/List';
 import './App.css'; // Keep the App.css import if there are global styles
 
 import Login from './domains/members/Login';

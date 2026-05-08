@@ -1,6 +1,6 @@
 import { maxios } from '../axiosApi';
 
-export const getReplies = (boardSeq) => maxios.get(`/replies/board/${boardSeq}`);
-export const postReply = (replyData) => maxios.post('/replies', replyData);
-export const putReply = (replyData) => maxios.put(`/replies/${replyData.seq}`, replyData);
-export const deleteReply = (seq) => maxios.delete(`/replies/${seq}`);
+export const getReplies = (bseq) => maxios.get(`/reply/${bseq}`);
+export const postReply = (data) => maxios.post('/reply', data);
+export const putReply = (data) => maxios.put(`/reply/${data.seq}`, data);
+export const deleteReply = (seq) => maxios.delete(`/reply/${seq}`);

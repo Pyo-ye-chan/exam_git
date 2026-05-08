@@ -1,11 +1,25 @@
 import React from 'react';
+
 import List from './domains/Board/List';
 import './App.css'; // Keep the App.css import if there are global styles
+
+import Login from './domains/members/Login';
+import { Route, Routes } from 'react-router-dom';
+
 
 function App() {
   return (
     <div className="App">
-      <List />
+
+      <Routes>
+        <Route index element={<Login />}/>
+        <Route path="/board">
+          <Route path="list" element={<List />} />
+        
+        </Route>
+
+      </Routes>
+
     </div>
   );
 }

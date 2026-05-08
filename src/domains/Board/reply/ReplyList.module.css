@@ -1,0 +1,26 @@
+.listContainer {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 0 20px;
+  background-color: #fff;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #0f0f0f;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.count {
+  color: #606060;
+  font-weight: 400;
+}
+
+.listWrapper {
+  display: flex;
+  flex-direction: column;
+}

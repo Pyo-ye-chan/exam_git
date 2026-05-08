@@ -6,6 +6,7 @@ import './App.css'; // Keep the App.css import if there are global styles
 import Login from './domains/members/Login';
 import { Route, Routes } from 'react-router-dom';
 import Reply from './domains/board/reply/Reply';
+import ReplyList from './domains/board/reply/ReplyList';
 
 
 function App() {
@@ -16,7 +17,7 @@ function App() {
         <Route index element={<Login />}/>
         <Route path="/board">
           <Route path="list" element={<List />} />
-          <Route path='reply' element={<Reply />} />
+          <Route path='reply' element={<ReplyList />} />
         </Route>
 
       </Routes>

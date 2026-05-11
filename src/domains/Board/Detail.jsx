@@ -73,7 +73,7 @@ const Detail = () => {
         <p>{post.contents}</p>
       </div>
       <div className={styles.detailActions}>
-        <button className={styles.backButton} onClick={() => navigate(-1)}>목록으로</button>
+        <button className={styles.backButton} onClick={() => navigate("/board/list")}>목록으로</button>
         {loginId === post.writer && (
           <>
             <button className={styles.editButton} onClick={handleEdit}>수정</button>

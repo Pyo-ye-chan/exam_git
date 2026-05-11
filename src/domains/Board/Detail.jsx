@@ -81,7 +81,7 @@ const Detail = () => {
           </>
         )}
       </div>
-      <ReplyList boardSeq={seq} /> {/* Render ReplyList and pass boardSeq prop */}
+      <ReplyList parent_seq={seq} /> {/* Render ReplyList and pass parent_seq prop */}
     </div>
   );
 };

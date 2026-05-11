@@ -1,9 +1,5 @@
 import React from 'react';
-
-
-
 import { Routes, Route, Navigate } from 'react-router-dom';
-
 import List from './domains/board/List';
 import './App.css'; // Keep the App.css import if there are global styles
 import Login from './domains/members/Login';
@@ -13,7 +9,6 @@ import Signup from './domains/members/Signup';
 import Main from './domains/Main/Main';
 import useAuthStore from './store/authStore';
 import Detail from "./domains/board/Detail"
-
 
 
 function App() {

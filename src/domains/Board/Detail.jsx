@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import styles from './Detail.module.css';
 import { maxios } from '../../api/axiosApi';
 
+
 const Detail = () => {
 
   const { seq } = useParams();
@@ -13,9 +14,9 @@ const Detail = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchPostDetail = async () => {
+    const fetchPostDetail = () => {
       try {
-        const response = await maxios.get(`/board/${seq}`); // API endpoint for board detail
+        const response = maxios.get(`/board/${seq}`); // Use the imported API function
         setPost(response.data);
       } catch (err) {
         setError(err);

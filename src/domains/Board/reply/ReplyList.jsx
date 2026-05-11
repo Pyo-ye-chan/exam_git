@@ -80,11 +80,13 @@ const ReplyList = ({ parent_seq = 7 }) => {
           replies.map((reply) => (
             <Reply
               key={reply.seq}
+              seq={reply.seq}
               loginId={loginId}
               writer={reply.writer}
               contents={reply.contents}
               write_date={reply.write_date}
               onDelete={() => handleDelete(reply.seq)}
+              onUpdate={() => setRefresh(!refresh)}
             />
           ))
         ) : (

@@ -1,9 +1,34 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './Reply.module.css';
+import { putReply } from '../../../api/reply/replyApi';
 
-const Reply = ({ loginId, writer, contents, write_date, onDelete }) => {
-  // 작성자 이름의 첫 글자를 아바타로 사용
+const Reply = ({ seq, loginId, writer, contents, write_date, onDelete, onUpdate }) => {
+  // 수정 모드 상태 관리
+  const [isEditing, setIsEditing] = useState(false);
+  const [editContents, setEditContents] = useState(contents);
+
   const avatarLabel = writer ? writer[0].toUpperCase() : '익';
+
+  // 수정 취소
+  const handleCancel = () => {
+    setIsEditing(false);
+    setEditContents(contents);
+  };
+
+  // 수정 저장
+  const handleSave = () => {
+    if (!editContents.trim()) return alert('내용을 입력해주세요.');
+    
+    const data = {
+      seq: seq,
+      contents: editContents
+    };
+
+    putReply(data).then(() => {
+      setIsEditing(false);
+      onUpdate(); // 부모 컴포넌트 목록 새로고침
+    }).catch(err => alert('수정 실패'));
+  };
 
   return (
     <div className={styles.container}>
@@ -15,26 +40,45 @@ const Reply = ({ loginId, writer, contents, write_date, onDelete }) => {
           <span className={styles.date}>{write_date}</span>
         </div>
 
-        <div className={styles.content}>{contents}</div>
+        {/* 수정 모드 여부에 따른 렌더링 분기 */}
+        {isEditing ? (
+          <div className={styles.editWrapper}>
+            <textarea 
+              className={styles.editTextarea}
+              value={editContents}
+              onChange={(e) => setEditContents(e.target.value)}
+              autoFocus
+            />
+            <div className={styles.editActions}>
+              <button className={styles.cancelBtn} onClick={handleCancel}>취소</button>
+              <button className={styles.saveBtn} onClick={handleSave}>저장</button>
+            </div>
+          </div>
+        ) : (
+          <div className={styles.content}>{contents}</div>
+        )}
 
         <div className={styles.actions}>
-          <button className={styles.actionBtn}>좋아요</button>
-          
-          {/* 본인이 작성한 댓글인 경우에만 수정/삭제 버튼 표시 */}
-          {loginId === writer && (
+          {!isEditing && (
             <>
-              <button 
-                className={styles.actionBtn} 
-                onClick={() => alert('수정 기능 준비 중')}
-              >
-                수정
-              </button>
-              <button 
-                className={`${styles.actionBtn} ${styles.deleteBtn}`}
-                onClick={onDelete}
-              >
-                삭제
-              </button>
+              <button className={styles.actionBtn}>좋아요</button>
+              
+              {loginId === writer && (
+                <>
+                  <button 
+                    className={styles.actionBtn} 
+                    onClick={() => setIsEditing(true)}
+                  >
+                    수정
+                  </button>
+                  <button 
+                    className={`${styles.actionBtn} ${styles.deleteBtn}`}
+                    onClick={onDelete}
+                  >
+                    삭제
+                  </button>
+                </>
+              )}
             </>
           )}
         </div>
